@@ -1,0 +1,12 @@
+# Idea
+*.iml
+
+# Compiled
+*.vtex_c
+*.vpcf_c
+*.vxml_c
+*.vcss_c
+*.vjs_c
+*.vmat_c
+
+*.bin
