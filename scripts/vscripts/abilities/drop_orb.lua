@@ -1,4 +1,4 @@
-LinkLuaModifier("mod__orb_countdown", "modifiers/mod__orb_countdown", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("mod__orb_dropped", "modifiers/mod__orb_dropped", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("mod__weighted_orb", "modifiers/mod__weighted_orb", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("mod__banner_vision", "modifiers/mod__banner_vision", LUA_MODIFIER_MOTION_NONE)
 drop_orb = class({})
@@ -14,7 +14,7 @@ function drop_orb:OnSpellStart()
                 local owner = item.owner
                 caster:DropItemAtPositionImmediate(item, caster:GetOrigin())
                 owner.orb = item
-                owner:AddNewModifier(caster, self, "mod__orb_countdown", nil)
+                owner:AddNewModifier(caster, self, "mod__orb_dropped", nil)
                 if owner.player_type == 0 then
                     item:GetContainer():SetRenderColor(255, 0, 0)
                 else
@@ -30,6 +30,9 @@ function drop_orb:OnSpellStart()
                 item.unit:AddNewModifier(nil, nil, "mod__weighted_orb", nil)
                 break
             elseif item:GetName():sub(1, 11) == "item_banner" then
+                if not item.owner then
+                    item.owner = caster
+                end
                 local owner = item.owner
                 caster:DropItemAtPositionImmediate(item, caster:GetOrigin())
                 owner.banner = item
@@ -41,6 +44,11 @@ function drop_orb:OnSpellStart()
                 end
                 item:GetContainer():SetOrigin(item:GetContainer():GetOrigin() + Vector(0, 0, 8))
                 item:GetContainer():SetAngles(0, 0, 0)
+                break
+            elseif item:GetName() == "item_veil" then
+                caster:DropItemAtPositionImmediate(item, caster:GetOrigin())
+                item:GetContainer():SetRenderColor(200, 0, 255)
+                item:GetContainer():SetForwardVector(Vector(0, 90, 0))
                 break
             end
         end

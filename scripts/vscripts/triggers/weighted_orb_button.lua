@@ -14,8 +14,9 @@ function OnStartTouch(trigger)
         local drops = Entities:FindAllByClassname("dota_item_drop")
         for _, drop in pairs(drops) do
             if drop:GetContainedItem():GetName() == "item_weighted_orb" then
-                local index = ParticleManager:CreateParticle("particles/units/heroes/hero_skywrath_mage/skywrath_mage_mystic_flare_ambient_hit.vpcf", PATTACH_ABSORIGIN_FOLLOW, drop)
+                local index = ParticleManager:CreateParticle("particles/econ/items/wisp/wisp_relocate_teleport_ti7.vpcf", PATTACH_WORLDORIGIN, hero)
                 ParticleManager:SetParticleControl(index, 0, drop:GetOrigin())
+                ParticleManager:SetParticleControl(index, 1, drop:GetOrigin())
                 ParticleManager:ReleaseParticleIndex(index)
                 drop:GetContainedItem().unit:RemoveSelf()
                 drop:RemoveSelf()

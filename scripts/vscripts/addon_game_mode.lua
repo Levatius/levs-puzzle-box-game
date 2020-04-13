@@ -1,4 +1,5 @@
 require("config")
+require("utils")
 LinkLuaModifier("mod__wall", "modifiers/mod__wall", LUA_MODIFIER_MOTION_NONE)
 
 
@@ -10,8 +11,11 @@ function Precache(ctx)
     PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_templar_assassin.vsndevts", ctx)
     PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_wisp.vsndevts", ctx)
     PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_chen.vsndevts", ctx)
+    PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_clinkz.vsndevts", ctx)
+    PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_riki.vsndevts", ctx)
     PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_shadowshaman.vsndevts", ctx)
     PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_techies.vsndevts", ctx)
+    PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_warlock.vsndevts", ctx)
     PrecacheResource("soundfile", "soundevents/game_sounds_items.vsndevts", ctx)
     PrecacheResource("soundfile", "soundevents/game_sounds.vsndevts", ctx)
     PrecacheResource("soundfile", "soundevents/game_sounds_ui_imported.vsndevts", ctx)
@@ -21,6 +25,8 @@ function Precache(ctx)
     PrecacheResource("particle", "particles/econ/wards/smeevil/smeevil_ward/smeevil_ward_yellow_ambient.vpcf", ctx)
     PrecacheResource("particle", "particles/econ/wards/smeevil/smeevil_ward/smeevil_ward_blue_ambient.vpcf", ctx)
     PrecacheResource("particle", "particles/econ/wards/smeevil/smeevil_ward/smeevil_ward_pink_ambient.vpcf", ctx)
+    PrecacheResource("particle", "particles/units/heroes/hero_monkey_king/monkey_king_furarmy_ring_bright.vpcf", ctx)
+    PrecacheResource("particle", "particles/generic_hero_status/status_invisibility_start.vpcf", ctx)
 end
 
 -- Create the game mode when we activate
@@ -51,9 +57,9 @@ function PuzzleBox:OnThink()
         local items = Entities:FindAllByClassname("item_datadriven")
         for _, item in pairs(items) do
             if item:GetContainer() and item:GetName():sub(1, 12) == "item_teleorb" then
-                if not item.owner:HasModifier("mod__orb_countdown") then
+                if not item.owner:HasModifier("mod__orb_dropped") then
                     print("Readding orb modifier to owner")
-                    item.owner:AddNewModifier(item.owner, item.owner:FindAbilityByName("drop_orb"), "mod__orb_countdown", nil)
+                    item.owner:AddNewModifier(item.owner, item.owner:FindAbilityByName("drop_orb"), "mod__orb_dropped", nil)
                 end
             end
         end
@@ -216,10 +222,9 @@ function PuzzleBox:OnNPCSpawned(event)
     print("OnNPCSpawned")
     local npc = EntIndexToHScript(event.entindex)
     if npc then
-        if npc.banner then
-            npc:SetOrigin(npc.banner:GetOrigin())
-        elseif npc.respawn_point then
-            npc:SetOrigin(npc.respawn_point)
+        local spawn_point = GetSpawnHandle(npc)
+        if spawn_point then
+            npc:SetOrigin(spawn_point)
         end
     end
 end
@@ -229,8 +234,8 @@ function PuzzleBox:OnItemPickedUp(event)
 
     if item:GetName():sub(1, 12) == "item_teleorb" then
         local owner = item.owner
-        if owner and owner:HasModifier("mod__orb_countdown") then
-            owner:RemoveModifierByName("mod__orb_countdown")
+        if owner and owner:HasModifier("mod__orb_dropped") then
+            owner:RemoveModifierByName("mod__orb_dropped")
         end
     elseif item:GetName() == "item_weighted_orb" then
         item.unit:RemoveSelf()

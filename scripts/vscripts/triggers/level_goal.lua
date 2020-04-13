@@ -6,6 +6,8 @@ function OnStartTouch()
         local trigger_name = thisEntity:GetName()
         trigger_name = trigger_name:sub(1, trigger_name:len() - 2)
 
+        CustomGameEventManager:Send_ServerToAllClients("level_start_notify", { level_name = "test" })
+
         if not thisEntity.players_on_pad then
             thisEntity.players_on_pad = 1
         else
@@ -28,6 +30,11 @@ function OnStartTouch()
             end
 
             if spawn.count == 2 then
+                local glows = Entities:FindAllByName(trigger_name .. "_glow")
+                for _, glow in pairs(glows) do
+                    UTIL_Remove(glow)
+                end
+
                 local heroes = Entities:FindAllByClassname("npc_dota_hero_rubick")
                 for _, hero in pairs(heroes) do
                     hero:SetOrigin(spawn:GetOrigin())

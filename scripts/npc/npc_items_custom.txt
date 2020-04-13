@@ -8,8 +8,7 @@
         "Model"                 "models/heroes/oracle/crystal_ball.vmdl"
         "Effect"                "particles/econ/courier/courier_greevil_red/courier_greevil_red_ambient_1.vpcf"
         "ItemQuality"           "epic"
-        "UIPickupSound"			"Item.PickUpGemShop"
-        "UIDropSound"			"Item.DropGemShop"
+        "WorldPickupSound"		"Item.PickUpGemWorld"
         "WorldDropSound"        "Item.DropGemWorld"
 
         "ItemCost"              "0"
@@ -19,7 +18,8 @@
         "ItemDroppable"         "0"
         "ItemShareability"      "ITEM_FULLY_SHAREABLE"
         "ItemStackable"         "0"
-        "ItemPermanent"         "1"
+        "ItemPermanent"         "0"
+        "AllowedInBackpack"		"1"
     }
 
     "item_teleorb_blue"
@@ -30,8 +30,7 @@
         "Model"                 "models/heroes/oracle/crystal_ball.vmdl"
         "Effect"                "particles/econ/courier/courier_greevil_blue/courier_greevil_blue_ambient_1.vpcf"
         "ItemQuality"           "epic"
-        "UIPickupSound"			"Item.PickUpGemShop"
-        "UIDropSound"			"Item.DropGemShop"
+        "WorldPickupSound"		"Item.PickUpGemWorld"
         "WorldDropSound"        "Item.DropGemWorld"
 
         "ItemCost"              "0"
@@ -41,7 +40,8 @@
         "ItemDroppable"         "0"
         "ItemShareability"      "ITEM_FULLY_SHAREABLE"
         "ItemStackable"         "0"
-        "ItemPermanent"         "1"
+        "ItemPermanent"         "0"
+        "AllowedInBackpack"		"1"
     }
 
     "item_weighted_orb"
@@ -52,6 +52,7 @@
         "Model"                 "models/items/hex/sheep_hex/sheep_hex_gold.vmdl"
         "Effect"                "particles/items_fx/aegis_lvl_1000_ambient_gold_shine.vpcf"
         "ItemQuality"           "epic"
+        "WorldPickupSound"		"Item.PickUpWorld"
         "WorldDropSound"        "Hero_ShadowShaman.SheepHex.Target"
 
         "ItemCost"              "0"
@@ -61,7 +62,8 @@
         "ItemDroppable"         "0"
         "ItemShareability"      "ITEM_FULLY_SHAREABLE"
         "ItemStackable"         "0"
-        "ItemPermanent"         "1"
+        "ItemPermanent"         "0"
+        "AllowedInBackpack"		"1"
     }
 
     "item_nightlock_mango"
@@ -79,7 +81,8 @@
         "ItemDroppable"         "0"
         "ItemShareability"      "ITEM_FULLY_SHAREABLE"
         "ItemStackable"         "0"
-        "ItemPermanent"         "1"
+        "ItemPermanent"         "0"
+        "AllowedInBackpack"		"1"
     }
 
     "item_banner_red"
@@ -90,6 +93,7 @@
         "Model"                 "models/heroes/juggernaut/jugg_healing_ward.vmdl"
         "Effect"                "particles/econ/courier/courier_greevil_red/courier_greevil_red_ambient_1.vpcf"
         "ItemQuality"           "rare"
+        "WorldPickupSound"		"Item.PickUpWorld"
         "WorldDropSound"        "DOTA_Item.ObserverWard.Activate"
 
         "ItemCost"              "0"
@@ -99,7 +103,8 @@
         "ItemDroppable"         "0"
         "ItemShareability"      "ITEM_FULLY_SHAREABLE"
         "ItemStackable"         "0"
-        "ItemPermanent"         "1"
+        "ItemPermanent"         "0"
+        "AllowedInBackpack"		"1"
     }
 
     "item_banner_blue"
@@ -110,6 +115,7 @@
         "Model"                 "models/heroes/juggernaut/jugg_healing_ward.vmdl"
         "Effect"                "particles/econ/courier/courier_greevil_blue/courier_greevil_blue_ambient_1.vpcf"
         "ItemQuality"           "rare"
+        "WorldPickupSound"		"Item.PickUpWorld"
         "WorldDropSound"        "DOTA_Item.ObserverWard.Activate"
 
         "ItemCost"              "0"
@@ -119,6 +125,30 @@
         "ItemDroppable"         "0"
         "ItemShareability"      "ITEM_FULLY_SHAREABLE"
         "ItemStackable"         "0"
-        "ItemPermanent"         "1"
+        "ItemPermanent"         "0"
+        "AllowedInBackpack"		"1"
+    }
+
+    "item_veil"
+    {
+        "BaseClass"             "item_lua"
+        "ScriptFile"			"abilities/item_veil.lua"
+        "AbilityTextureName"    "item_veil"
+        "AbilityBehavior"	    "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "Model"                 "models/props_gameplay/neutral_box.vmdl"
+        "Effect"                "particles/econ/events/ti9/aegis_lvl_1000_ambient_ti9_gold_caustic.vpcf"
+        "ItemQuality"           "epic"
+        "WorldPickupSound"		"Item.PickUpRingWorld"
+        "WorldDropSound"        "Item.DropRingWorld"
+
+        "ItemCost"              "0"
+        "ItemKillable"          "0"
+        "ItemSellable"          "0"
+        "ItemPurchasable"       "0"
+        "ItemDroppable"         "0"
+        "ItemShareability"      "ITEM_FULLY_SHAREABLE"
+        "ItemStackable"         "0"
+        "ItemPermanent"         "0"
+        "AllowedInBackpack"		"1"
     }
 }
