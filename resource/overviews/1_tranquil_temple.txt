@@ -1,0 +1,8 @@
+1_tranquil_temple
+{
+	material materials/overviews/1_tranquil_temple.vmat
+	pos_x -4096
+	pos_y 4096
+	scale 8.000
+}
+

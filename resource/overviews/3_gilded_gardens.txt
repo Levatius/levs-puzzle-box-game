@@ -1,0 +1,8 @@
+3_gilded_gardens
+{
+	material materials/overviews/3_gilded_gardens.vmat
+	pos_x -4096
+	pos_y 4096
+	scale 8.000
+}
+

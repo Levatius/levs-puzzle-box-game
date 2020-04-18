@@ -27,7 +27,6 @@ end
 function mod__sentry:CheckState()
     return {
         [MODIFIER_STATE_NO_HEALTH_BAR] = true,
-        [MODIFIER_STATE_OUT_OF_GAME] = true,
         [MODIFIER_STATE_UNSELECTABLE] = true
     }
 end

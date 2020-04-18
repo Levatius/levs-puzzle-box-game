@@ -151,17 +151,16 @@ function PuzzleBox:OnHeroFinishSpawn(keys)
 end
 
 function PuzzleBox:SetupHero(hero)
-    hero.respawn_unit = CreateUnitByName("spawn", hero:GetOrigin(), true, hero, hero, DOTA_TEAM_GOODGUYS)
-    if string.match(GetMapName(), "timelapse") then
-        if hero.player_type == 0 then
-            PlayerResource:SetCustomPlayerColor(hero:GetPlayerID(), 255, 0, 0)
-            hero:SetRenderColor(255, 0, 0)
-            hero.respawn_unit.index = ParticleManager:CreateParticle("particles/econ/wards/smeevil/smeevil_ward/smeevil_ward_yellow_ambient.vpcf", PATTACH_ABSORIGIN_FOLLOW, hero.respawn_unit)
-        else
-            PlayerResource:SetCustomPlayerColor(hero:GetPlayerID(), 0, 0, 255)
-            hero:SetRenderColor(0, 0, 255)
-            hero.respawn_unit.index = ParticleManager:CreateParticle("particles/econ/wards/smeevil/smeevil_ward/smeevil_ward_blue_ambient.vpcf", PATTACH_ABSORIGIN_FOLLOW, hero.respawn_unit)
-        end
+    hero.respawn_unit = CreateUnitByName("spawn", hero:GetOrigin(), true, hero, hero:GetPlayerOwner(), DOTA_TEAM_GOODGUYS)
+
+    if hero.player_type == 0 then
+        PlayerResource:SetCustomPlayerColor(hero:GetPlayerID(), 255, 0, 0)
+        hero:SetRenderColor(255, 0, 0)
+        hero.respawn_unit.index = ParticleManager:CreateParticle("particles/econ/wards/smeevil/smeevil_ward/smeevil_ward_yellow_ambient.vpcf", PATTACH_ABSORIGIN_FOLLOW, hero.respawn_unit)
+    else
+        PlayerResource:SetCustomPlayerColor(hero:GetPlayerID(), 0, 0, 255)
+        hero:SetRenderColor(0, 0, 255)
+        hero.respawn_unit.index = ParticleManager:CreateParticle("particles/econ/wards/smeevil/smeevil_ward/smeevil_ward_blue_ambient.vpcf", PATTACH_ABSORIGIN_FOLLOW, hero.respawn_unit)
     end
 
     hero.respawn_unit:AddNewModifier(nil, nil, "modifier_phased", nil)
@@ -183,12 +182,12 @@ function PuzzleBox:InitialItems(hero)
 
     if self.player_type_counter == 0 then
         hero:AddItemByName("item_teleorb_red")
-        if GetMapName() == "timelapse_4" then
+        if GetMapName() == "4_harrowing_harbour" then
             hero:AddItemByName("item_banner_red")
         end
     else
         hero:AddItemByName("item_teleorb_blue")
-        if GetMapName() == "timelapse_4" then
+        if GetMapName() == "4_harrowing_harbour" then
             hero:AddItemByName("item_banner_blue")
         end
     end

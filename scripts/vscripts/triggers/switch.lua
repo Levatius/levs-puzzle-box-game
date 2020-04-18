@@ -5,7 +5,8 @@ function OnStartTouch(trigger)
         local hero = EntIndexToHScript(hero_index)
 
         hero.respawn_point = thisEntity:GetOrigin()
-        EmitSoundOn("Building_Generic.Destruction", thisEntity)
+        hero.respawn_unit:SetOrigin(hero.respawn_point)
+        EmitSoundOn("Hero_Techies.RemoteMine.Detonate", thisEntity)
     end
 end
 

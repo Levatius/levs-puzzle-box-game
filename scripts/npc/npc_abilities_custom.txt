@@ -33,4 +33,12 @@
         "ScriptFile"					"abilities/sentry"
         "MaxLevel"                      "1"
     }
+
+    "guardian"
+    {
+        "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "BaseClass"					    "ability_lua"
+        "ScriptFile"					"abilities/guardian"
+        "MaxLevel"                      "1"
+    }
 }
